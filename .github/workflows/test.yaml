@@ -15,10 +15,22 @@ on:
         - 'contrib/**'
         - '.github/CODEOWNERS'
     workflow_dispatch:
+env:
+  GO_VERSION: '1.21.12'
 
 jobs:
     test-mac-os:
         runs-on: macos-latest
         steps:
-         - name: echo hello world
-           run: echo "Hello, world"
+          - uses: actions/checkout@v4
+          - uses: actions/setup-go@v5
+            with:
+              go-version: ${{ env.GO_VERSION }}
+          - name: echo hello world
+            run: echo "Hello, world"
+          - name: Check installed tools
+            run: | 
+                brew help
+                aws --version
+                make --version
+          
