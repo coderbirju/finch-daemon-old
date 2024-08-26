@@ -20,17 +20,16 @@ env:
 
 jobs:
     test-mac-os:
-        runs-on: macos-latest
+        runs-on: ubuntu-latest
         steps:
-          - uses: actions/checkout@v4
           - uses: actions/setup-go@v5
             with:
               go-version: ${{ env.GO_VERSION }}
-          - name: echo hello world
-            run: echo "Hello, world"
-          - name: Check installed tools
-            run: | 
-                brew help
-                aws --version
-                make --version
-          
+          - name: Checkout finch-deamon repo
+            uses: actions/checkout@v4
+          - name: Make build finch-deamon
+            run: |
+             VERSION=0.8.0 make build
+             make run-unit-tests
+              
+             
