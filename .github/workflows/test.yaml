@@ -19,7 +19,7 @@ env:
   GO_VERSION: '1.21.12'
 
 jobs:
-    test-mac-os:
+    unit-test-ubuntu:
         runs-on: ubuntu-latest
         steps:
           - uses: actions/setup-go@v5
@@ -27,9 +27,60 @@ jobs:
               go-version: ${{ env.GO_VERSION }}
           - name: Checkout finch-deamon repo
             uses: actions/checkout@v4
-          - name: Make build finch-deamon
+          - name: Build and run unit tests
             run: |
              VERSION=0.8.0 make build
              make run-unit-tests
-              
-             
+    
+    e2e-test-macOS:
+        runs-on: macos-latest
+        steps:
+          - uses: actions/setup-go@v5
+            with:
+              go-version: ${{ env.GO_VERSION }}
+          - name: Checkout finch repo
+            uses: actions/checkout@v4
+            with:
+              repository: runfinch/finch
+              fetch-tags: true
+              path: finch
+          - name: Checkout finch-daemon repo
+            uses: actions/checkout@v4
+            with:
+              repository: coderbirju/finch-daemon
+              path: finch-deamon
+          - name: Clean up previous files
+            run: |
+              sudo rm -rf /opt/finch
+              sudo rm -rf ~/.finch
+              sudo rm -rf ./_output
+              if pgrep '^qemu-system'; then
+                sudo pkill '^qemu-system'
+              fi
+              if pgrep '^socket_vmnet'; then
+                sudo pkill '^socket_vmnet'
+              fi
+          - name: Install Rosetta 2
+            run: echo "A" | softwareupdate --install-rosetta || true
+          - name: install finch dependencies
+            run: brew install lz4 automake autoconf libtool yq
+            shell: zsh {0}
+          - name: run e2e tests
+            run: |
+             export DEAMON_DIR=$(pwd)/finch-deamon
+             export FINCH_DIR=$(pwd)/finch
+             cd $DEAMON_DIR
+             make build
+             cd $FINCH_DIR
+             git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
+             git submodule update --init --recursive 
+             export PATH="/opt/homebrew/opt/libtool/libexec/gnubin:$PATH"
+             make
+             mkdir ./_output/finch-daemon
+             cp $DEAMON_DIR/bin/finch-daemon ./_output/finch-daemon/finch-daemon
+             ls ./_output/bin/
+             ./_output/bin/finch vm init
+             echo "finch init complete"
+             echo $DEAMON_DIR
+             cd $DEAMON_DIR
+             FINCH_ROOT=$FINCH_DIR/_output make run-e2e-tests
