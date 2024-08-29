@@ -20,8 +20,9 @@ func TestRun(t *testing.T) {
 		t.Skip("E2E tests skipped. Set RUN_E2E_TESTS=1 to run these tests")
 	}
 
-	finchexe := tests.GetFinchExe()
-	opt, _ := option.New([]string{finchexe})
+	finchexe := "nerdctl" //tests.GetFinchExe()
+	// opt, _ := option.New([]string{finchexe})
+	opt, _ := option.New([]string{finchexe, "-n", "finch"})
 
 	ginkgo.SynchronizedBeforeSuite(func() []byte {
 		tests.SetupLocalRegistry(opt)
