@@ -1,38 +1,20 @@
-name: test
+name: CI
 on:
     push:
       branches:
         - main
       paths-ignore:
         - '**.md'
-        - 'contrib/**'
-        - '.github/CODEOWNERS'
     pull_request:
       branches:
         - main
       paths-ignore:
         - '**.md'
-        - 'contrib/**'
-        - '.github/CODEOWNERS'
     workflow_dispatch:
 env:
-  GO_VERSION: '1.21.12'
-  NERDCTL_VERSION: '1.7.6'
-  CONTAINERD_VERSION: '1.7.18'
+ GO_VERSION: '1.22.6'
 
 jobs:
-    # unit-test-ubuntu:
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #       - uses: actions/setup-go@v5
-    #         with:
-    #           go-version: ${{ env.GO_VERSION }}
-    #       - name: Checkout finch-deamon repo
-    #         uses: actions/checkout@v4
-    #       - name: Build and run unit tests
-    #         run: |
-    #          VERSION=0.8.0 make build
-    #          make run-unit-tests
     git-secrets:
       runs-on: ubuntu-latest
       steps:
@@ -51,26 +33,32 @@ jobs:
           run: |
             git secrets --register-aws
             git secrets --scan-history
-    e2e-test-macOS:
+    unit-test:
         runs-on: ubuntu-latest
         steps:
           - uses: actions/setup-go@v5
             with:
               go-version: ${{ env.GO_VERSION }}
               cache: false
-          - name: Checkout finch-daemon repo
-            uses: actions/checkout@v4
-          - name: Install Dependencies
+          - name: Checkout finch-deamon repo
+            uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+          - name: Build and run unit tests
             run: |
-             chmod +x ./setup-test-env.sh
-             ./setup-test-env.sh
+             make build
+             make run-unit-tests
+    e2e-test:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/setup-go@v5
+            with:
+              go-version: ${{ env.GO_VERSION }}
+          - name: Checkout finch-daemon repo
+            uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+          - name: Install Dependencies for e2e Testing
+            run: ./setup-test-env.sh
           - name: Build the daemon
             run: make build
-          - name: verify installed dependencies
-            run: |
-             nerdctl --version
-             ctr -v
-          - name: check if podman is present
+          - name: Remove default podman network config
             run: |
              sudo ls /etc/cni/net.d
              sudo rm /etc/cni/net.d/87-podman-bridge.conflist
