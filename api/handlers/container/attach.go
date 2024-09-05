@@ -105,7 +105,6 @@ func checkUpgradeStatus(ctx context.Context, upgrade bool) (string, string) {
 			contentType = "application/vnd.docker.multiplexed-stream"
 		}
 		successResponse = fmt.Sprintf("HTTP/1.1 101 UPGRADED\r\nContent-Type: %s\r\nConnection: Upgrade\r\nUpgrade: tcp\r\n\r\n", contentType)
-		// change the format of adding contentType to the printf statement?? Sprintf to Sprint
 	}
 	return contentType, successResponse
 }
