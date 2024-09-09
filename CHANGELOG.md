@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/coderbirju/finch-daemon/compare/v1.2.0...v1.3.0) (2024-09-09)
+
+
+### Features
+
+* upload artifacts to previous tag ([e274dc1](https://github.com/coderbirju/finch-daemon/commit/e274dc1f3c8526b37b2a95919485808de058b0ff))
+
 ## [1.2.0](https://github.com/coderbirju/finch-daemon/compare/v1.1.0...v1.2.0) (2024-09-09)
 
 
