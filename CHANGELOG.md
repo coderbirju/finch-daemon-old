@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/coderbirju/finch-daemon/compare/v0.2.0...v0.2.1) (2024-09-09)
+
+
+### Bug Fixes
+
+* what happens now? ([#21](https://github.com/coderbirju/finch-daemon/issues/21)) ([42a1978](https://github.com/coderbirju/finch-daemon/commit/42a19787bb87d2916ad2b5e4e1a6b5a93a153e67))
+
 ## [0.2.0](https://github.com/coderbirju/finch-daemon/compare/v0.1.0...v0.2.0) (2024-09-09)
 
 
