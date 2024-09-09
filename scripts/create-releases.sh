@@ -27,7 +27,6 @@ FINCH_DAEMON_PROJECT_ROOT="$(cd -- "$CUR_DIR"/.. && pwd)"
 OUT_DIR="${FINCH_DAEMON_PROJECT_ROOT}/bin"
 RELEASE_DIR="${FINCH_DAEMON_PROJECT_ROOT}/release"
 LICENSE_FILE=${FINCH_DAEMON_PROJECT_ROOT}/THIRD_PARTY_LICENSES
-# NOTICE_FILE=${FINCH_DAEMON_PROJECT_ROOT}/NOTICE.md
 TAG_REGEX="v[0-9]+.[0-9]+.[0-9]+"
 
 ARCH=""
@@ -64,14 +63,7 @@ tar -czvf "$RELEASE_DIR"/"$dynamic_binary_name" -- *
 popd
 rm -rf "{$OUT_DIR:?}"/*
 
-# STATIC=1 make build
-# cp "$NOTICE_FILE" "$LICENSE_FILE" "$OUT_DIR"
-# pushd "$OUT_DIR"
-# tar -czvf "$RELEASE_DIR"/"$static_binary_name" -- *
-# popd
-# rm -rf "{$OUT_DIR:?}"/*
 
 pushd "$RELEASE_DIR"
 sha256sum "$dynamic_binary_name" > "$RELEASE_DIR"/"$dynamic_binary_name".sha256sum
-# sha256sum "$static_binary_name" > "$RELEASE_DIR"/"$static_binary_name".sha256sum
 popd
