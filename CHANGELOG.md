@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/coderbirju/finch-daemon/compare/v1.1.0...v1.2.0) (2024-09-09)
+
+
+### Features
+
+* should trigger a release automatically ([3ecf8b4](https://github.com/coderbirju/finch-daemon/commit/3ecf8b46672ba0ae329f55361e2ddb0adeb047ff))
+
 ## [1.1.0](https://github.com/coderbirju/finch-daemon/compare/v1.0.0...v1.1.0) (2024-09-09)
 
 
