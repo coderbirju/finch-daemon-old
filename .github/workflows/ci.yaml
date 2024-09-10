@@ -77,9 +77,7 @@ jobs:
       - name: Build the daemon
         run: make build
       - name: Remove default podman network config
-        run: |
-          sudo ls /etc/cni/net.d
-          sudo rm /etc/cni/net.d/87-podman-bridge.conflist
+        run: "sudo ls /etc/cni/net.d\nsudo rm /etc/cni/net.d/87-podman-bridge.conflist \n"
       - name: Start finch-daemon
         run: sudo bin/finch-daemon  --debug --socket-owner $UID &
       - name: Run e2e test
