@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.0](https://github.com/coderbirju/finch-daemon/compare/v0.0.1...v0.1.0) (2024-09-10)
+
+
+### Features
+
+* added new echo statement ([#37](https://github.com/coderbirju/finch-daemon/issues/37)) ([90cfe61](https://github.com/coderbirju/finch-daemon/commit/90cfe61832e807f85634ebb5d9b68777ea288515))
+
+
+### Bug Fixes
+
+* change branch that triggers release please ([#39](https://github.com/coderbirju/finch-daemon/issues/39)) ([e95222d](https://github.com/coderbirju/finch-daemon/commit/e95222d08b3d23dcc2f34501a831a432b8de3059))
+
 ## 1.0.0 (2024-09-10)
 
 
