@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/coderbirju/finch-daemon/compare/v0.3.0...v0.3.1) (2024-09-12)
+
+
+### Bug Fixes
+
+* fix CVE-2024-2345 ([29342db](https://github.com/coderbirju/finch-daemon/commit/29342db089d6a231f178b7c693a73f89ba7e1695))
+
 ## [0.3.0](https://github.com/coderbirju/finch-daemon/compare/v0.2.0...v0.3.0) (2024-09-12)
 
 
