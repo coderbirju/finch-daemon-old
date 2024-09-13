@@ -5,6 +5,7 @@ go 1.22
 require (
 	github.com/containerd/cgroups/v3 v3.0.3
 	github.com/containerd/containerd v1.7.14
+	github.com/containerd/fifo v1.1.0
 	github.com/containerd/go-cni v1.1.9
 	github.com/containerd/nerdctl v1.7.5
 	github.com/containerd/typeurl/v2 v2.1.1
@@ -48,7 +49,6 @@ require (
 	github.com/containerd/console v1.0.4 // indirect
 	github.com/containerd/continuity v0.4.3 // indirect
 	github.com/containerd/errdefs v0.1.0 // indirect
-	github.com/containerd/fifo v1.1.0 // indirect
 	github.com/containerd/go-runc v1.1.0 // indirect
 	github.com/containerd/imgcrypt v1.1.10 // indirect
 	github.com/containerd/log v0.1.0 // indirect
