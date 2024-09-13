@@ -69,9 +69,9 @@ run-unit-tests: linux
 
 .PHONY: licenses
 licenses:
-	GOBIN=$(BIN) go install github.com/google/go-licenses@latest
 	PATH=$(BIN):$(PATH) go-licenses report --template="scripts/third-party-license.tpl" --ignore github.com/runfinch github.com/multiformats/go-base36 ./... > THIRD_PARTY_LICENSES
 
+# GOBIN=$(BIN) go install github.com/google/go-licenses@latest
 # Runs tests in headless dlv mode, must specify package directory with PKG_DIR
 PKG_DIR ?= .
 .PHONY: debug-unit-tests

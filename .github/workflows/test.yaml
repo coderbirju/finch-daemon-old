@@ -1,7 +1,16 @@
-name: Release Finch Daemon
+name: Test Release Finch Daemon
 on:
-  workflow_dispatch:
-  workflow_call:
+    push:
+      branches:
+        - main
+      paths-ignore:
+        - '**.md'
+    pull_request:
+      branches:
+        - main
+      paths-ignore:
+        - '**.md'
+    workflow_dispatch:
 env:
   GO_VERSION: '1.22.7'
 permissions:
@@ -68,19 +77,3 @@ jobs:
           name: artifacts
           path: release/
       - run: bash scripts/verify-release-artifacts.sh ${{ needs.generate-artifacts.outputs.release_tag }}
-  create-release:
-    needs: [generate-artifacts, validate-artifacts]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          name: artifacts
-      - uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ needs.generate-artifacts.outputs.release_tag }}
-          prerelease: false
-          generate_release_notes: false
-          files: |
-            ${{ needs.generate-artifacts.outputs.dynamic_binary_name }}
-            ${{ needs.generate-artifacts.outputs.dynamic_binary_name }}.sha256sum
