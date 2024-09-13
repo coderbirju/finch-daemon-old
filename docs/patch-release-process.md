@@ -28,4 +28,3 @@ We create new releases form the main branch and maintain [Conventional Commit me
       
       - Close and reopen to run the CI checks 
       - Merge the PR and verify that a new release is created
-
