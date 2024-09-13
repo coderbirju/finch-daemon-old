@@ -30,3 +30,4 @@ We create new releases form the main branch and maintain [Conventional Commit me
       - Merge the PR and verify that a new release is created
       - testing
       - testing 2
+
