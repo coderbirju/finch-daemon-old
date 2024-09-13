@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/coderbirju/finch-daemon/compare/v0.1.2...v0.1.3) (2024-09-13)
+
+
+### Bug Fixes
+
+* trigger release via new commit ([#67](https://github.com/coderbirju/finch-daemon/issues/67)) ([be35ff6](https://github.com/coderbirju/finch-daemon/commit/be35ff6050a91f23b08269d5852aec0501a8f420))
+
 ## [0.1.2](https://github.com/coderbirju/finch-daemon/compare/v0.1.1...v0.1.2) (2024-09-13)
 
 
