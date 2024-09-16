@@ -39,10 +39,10 @@ jobs:
           echo "DYNAMIC_BINARY_NAME=finch-daemon-${release_version}-linux-amd64.tar.gz" >> $GITHUB_ENV
 
           mkdir release
-      - name: Install Go licenses
-        run: go install github.com/google/go-licenses@latest
-      - name: Create Third Party Licences File
-        run: make licenses
+      - name: Install Go licenses and Create Third Party Licences
+        run: |
+          go install github.com/google/go-licenses@latest
+          make licenses
       - name: Create release binaries
         run: make RELEASE_TAG=${{ env.RELEASE_TAG }} release
       - name: Check release version
