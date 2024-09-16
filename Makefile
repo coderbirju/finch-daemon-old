@@ -69,7 +69,7 @@ run-unit-tests: linux
 
 .PHONY: licenses
 licenses:
-	PATH=$(BIN):$(PATH) go-licenses report --template="scripts/third-party-license.tpl" --ignore github.com/runfinch ./... > THIRD_PARTY_LICENSES
+	go-licenses report --template="scripts/third-party-license.tpl" --ignore github.com/runfinch ./... > THIRD_PARTY_LICENSES
 
 # Runs tests in headless dlv mode, must specify package directory with PKG_DIR
 PKG_DIR ?= .
