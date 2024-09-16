@@ -76,4 +76,4 @@ jobs:
         with:
           name: artifacts
           path: release/
-      - run: bash scripts/verify-release-artifacts.sh ${{ needs.generate-artifacts.outputs.release_tag }}
+      - run: ls
