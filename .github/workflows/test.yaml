@@ -58,6 +58,13 @@ jobs:
         run: make licenses
       - name: Create release binaries
         run: make RELEASE_TAG=${{ env.RELEASE_TAG }} release
+      - name: Check release version
+        run: |
+          mkdir output
+          tar -xzf release/${{ env.DYNAMIC_BINARY_NAME }} -C ./output
+          BINARY_VERSION=$(./output/finch-daemon --version)
+          echo "release tag = ${{ env.RELEASE_TAG }}"
+          echo $BINARY_VERSION
       - uses: actions/upload-artifact@v4
         with:
           name: artifacts
