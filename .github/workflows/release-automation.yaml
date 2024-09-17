@@ -59,6 +59,7 @@ jobs:
           echo $BINARY_VERSION
           export release_tag=${{ env.RELEASE_TAG }}
           export release_version=${release_tag/v/}
+          echo $release_version
           if ["$BINARY_VERSION" != "$release_version"]; then
             echo "version mismath"
             exit 1
