@@ -30,6 +30,8 @@ jobs:
       STATIC_BINARY_NAME: ''
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          fetch-tags: true
       - name: 'Echo RELEASE_TAG ENV'
         run: echo ${{ env.RELEASE_TAG }}
       - name: Setup variables and release directories
@@ -46,7 +48,9 @@ jobs:
           # make licenses
           touch THIRD_PARTY_LICENSES
       - name: Create release binaries
-        run: make RELEASE_TAG=${{ env.RELEASE_TAG }} release
+        run: |
+          git describe --match 'v[0-9]*' --dirty='.modified' --always --tags
+          make RELEASE_TAG=${{ env.RELEASE_TAG }} release
       - name: Check release version
         run: |
           mkdir output
