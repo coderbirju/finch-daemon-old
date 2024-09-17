@@ -55,9 +55,15 @@ jobs:
         run: |
           mkdir output
           tar -xzf release/${{ env.DYNAMIC_BINARY_NAME }} -C ./output
-          BINARY_VERSION=$(./output/finch-daemon --version)
-          echo "release tag = ${{ env.RELEASE_TAG }}"
+          BINARY_VERSION=$(./output/finch-daemon --version | grep -oP '\d+\.\d+\.\d+')
           echo $BINARY_VERSION
+          export release_tag=${{ env.RELEASE_TAG }}
+          export release_version=${release_tag/v/}
+          if ["$BINARY_VERSION" != "$release_version"]; then
+            echo "version mismath"
+            exit 1
+          fi
+        shell: bash
       - uses: actions/upload-artifact@v4
         with:
           name: artifacts
