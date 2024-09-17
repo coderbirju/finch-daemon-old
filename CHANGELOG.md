@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.4](https://github.com/coderbirju/finch-daemon/compare/v1.5.3...v1.5.4) (2024-09-17)
+
+
+### Bug Fixes
+
+* Fix go-licenses error ([708965f](https://github.com/coderbirju/finch-daemon/commit/708965fd077296977bbcc87771b82966cd59ab61))
+
 ## [1.5.3](https://github.com/coderbirju/finch-daemon/compare/v1.5.2...v1.5.3) (2024-09-17)
 
 
