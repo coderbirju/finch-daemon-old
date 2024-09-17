@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/coderbirju/finch-daemon/compare/v1.5.1...v1.5.2) (2024-09-17)
+
+
+### Bug Fixes
+
+* verfiy tag version ([c9defb0](https://github.com/coderbirju/finch-daemon/commit/c9defb02acef55f68b71aa64716bfb46ce35d726))
+
 ## [1.5.1](https://github.com/coderbirju/finch-daemon/compare/v1.5.0...v1.5.1) (2024-09-17)
 
 
