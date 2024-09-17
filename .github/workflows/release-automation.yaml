@@ -42,6 +42,7 @@ jobs:
       - name: Install Go licenses and Create Third Party Licences
         run: |
           go install github.com/google/go-licenses@latest
+          echo "$HOME/go/bin" >> $GITHUB_PATH
           make licenses
       - name: Create release binaries
         run: make RELEASE_TAG=${{ env.RELEASE_TAG }} release
