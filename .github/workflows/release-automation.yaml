@@ -42,7 +42,9 @@ jobs:
 
           mkdir release
       - name: Install Go licenses
-        run: go install github.com/google/go-licenses@latest
+        run: | 
+          go install github.com/google/go-licenses@latest
+          go-licenses --help
       - name: Create Third Party Licences File
         run: make licenses
       - name: Create release binaries
